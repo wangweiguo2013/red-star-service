@@ -17,12 +17,11 @@ class ModuleConfig {
 
     readonly mysql = {
         host: '115.159.148.236',
-        database: 'learn',
+        database: 'red-star',
         port: 3306,
         user: 'root',
-        password: 'cde96b22d03bbd5b'
+        password: 'HwRmwyiBsXiPMtMt'
     }
-
     /** 接口前缀 */
     readonly api_prefix = "/api/v1/";
 

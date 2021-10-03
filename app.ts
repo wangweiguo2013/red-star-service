@@ -5,12 +5,14 @@ import publicRouter from './src/routes/public'
 import privateRouter from './src/routes/private'
 import setup from './src/utils/setup'
 import loggerMiddleware from './src/middlewares/logger'
+import extendMiddleware from './src/middlewares/extend'
 
 const App = new Koa();
 
 setup()
 
 App.use(loggerMiddleware)
+App.use(extendMiddleware)
 // 先统一设置请求配置 => 跨域，请求头信息...
 
 App.use(async (ctx, next) => {

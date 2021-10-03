@@ -1,5 +1,6 @@
 import { Sequelize, ModelAttributes } from "sequelize";
 import config from '../config'
+import logger from './logger'
 const { mysql } = config
 
 const sequelizeManager = new Sequelize(mysql.database, mysql.user, mysql.password, {
@@ -13,7 +14,9 @@ const sequelizeManager = new Sequelize(mysql.database, mysql.user, mysql.passwor
       freezeTableName: true,
       timestamps: true,
     },
-    logging: false,
+    logging:(sql, number)=>{
+      logger.log('Sequelize sql is %s, number is %n',sql, number)
+    },
   }
 )
 export default sequelizeManager
