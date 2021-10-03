@@ -9,7 +9,7 @@ class loginController {
 
         if (user && user.name) {
             let payload = {
-                exp: Math.floor(Date.now() / 1000) + (60 * 60), // 一小时
+                exp: Math.floor(Date.now() / 1000) + 60 * 60, // 一小时
                 name: user.name,
             }
             let token = jwt.sign(payload, config.secret)
@@ -18,7 +18,7 @@ class loginController {
                 data: {
                     token,
                     user: user.name,
-                }
+                },
             })
         } else {
             ctx.sendResponse({

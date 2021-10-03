@@ -16,9 +16,10 @@ const sequelizeManager = new Sequelize(mysql.database, mysql.user, mysql.passwor
         freezeTableName: true,
         timestamps: true,
     },
-    logging: (sql, number) => {
-        logger.log('Sequelize sql is %s, number is %n', sql, number)
-    },
+    logging: false,
+    // (sql, number) => {
+    //     logger.log('Sequelize sql is %s, number is %n', sql, number)
+    // },
 })
 export default sequelizeManager
 

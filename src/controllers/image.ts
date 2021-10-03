@@ -3,13 +3,16 @@
 import ImageService from '../services/image'
 import * as fs from 'fs'
 import * as path from 'path'
+import config from '../config'
+
+const isOnline = process.env.NODE_ENV === 'production'
 
 function saveFile(file, name) {
     const reader = fs.createReadStream(file.path)
-    const writer = fs.createWriteStream(
-        // 文件上传到 image 文件夹中
-        path.resolve(__dirname, '../../image', name),
-    )
+    const streamPath = isOnline 
+        ? path.resolve(config.image_path_online, name) 
+        : path.resolve(__dirname,  config.image_path, name)
+    const writer = fs.createWriteStream(streamPath)
 
     return new Promise((resolve, reject) => {
         reader.pipe(writer)
@@ -24,11 +27,17 @@ function saveFile(file, name) {
     })
 }
 
+function getSuffix(name){
+   const str = name.split('.')
+   return str[str.length - 1]
+}
+
 class ImageController {
     async upload(ctx) {
         const {file} = ctx.request.files
         const {name, type, size} = file
-        const fileName = Math.random().toString(16).slice(2) + '.png'
+        const suffix = getSuffix(name)
+        const fileName = Math.random().toString(16).slice(2) + '.' + suffix
         await saveFile(file, fileName)
         const fileData = {
             origin_name: name,
@@ -37,10 +46,13 @@ class ImageController {
             file_type: type,
         }
         const imageInfo = await ImageService.create(fileData)
-        ctx.body = {
+        ctx.sendResponse({
             code: 200,
-            data: imageInfo,
-        }
+            data: {
+                name: imageInfo.getDataValue('file_name'),
+                image_url: config.image_path_url + fileName
+            }
+        })
     }
 }
 

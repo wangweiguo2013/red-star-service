@@ -18,6 +18,7 @@ router.post('/image', imageController.upload)
 router.post('/page', pageController.create)
 router.get('/page', pageController.list)
 router.get('/page/:id', pageController.list)
+router.put('/page/:id', pageController.update)
 router.delete('/page/:id', pageController.delete)
 router.post('/page/:id/restore', pageController.restore)
 
