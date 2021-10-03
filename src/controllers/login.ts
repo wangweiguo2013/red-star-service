@@ -6,24 +6,24 @@ class loginController {
     async login(ctx) {
         ctx.body = 'login'
         const user = ctx.request.body
-        const tokenExpiresTime = 1000 * 1 // 登陆过期时间
 
         if (user && user.name) {
             let payload = {
-                exp: Math.floor(Date.now() / 1000) + 60, //(60 * 60),
+                exp: Math.floor(Date.now() / 1000) + (60 * 60), // 一小时
                 name: user.name,
             }
             let token = jwt.sign(payload, config.secret)
-
-            ctx.body = {
-                user: user.name,
-                code: 1,
-                token,
-            }
+            ctx.sendResponse({
+                code: 200,
+                data: {
+                    token,
+                    user: user.name,
+                }
+            })
         } else {
-            ctx.body = {
+            ctx.sendResponse({
                 code: -1,
-            }
+            })
         }
     }
 }
