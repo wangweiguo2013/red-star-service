@@ -1,5 +1,7 @@
-import { ModelAttributes, DataTypes, NOW } from 'sequelize'
-import { defineModel } from '../utils/db'
+/** @format */
+
+import {ModelAttributes, DataTypes, NOW} from 'sequelize'
+import {defineModel} from '../utils/db'
 
 const PageModel: ModelAttributes = {
     id: {
@@ -8,15 +10,15 @@ const PageModel: ModelAttributes = {
         primaryKey: true,
         unique: true,
         autoIncrement: true,
-        comment:"自增id"
+        comment: '自增id',
     },
     pageSchema: {
         type: DataTypes.JSON,
-        allowNull: true
+        allowNull: true,
     },
     title: {
         type: DataTypes.STRING(50),
-        allowNull: true
+        allowNull: true,
     },
     // status: {
     //     type: DataTypes.STRING(255),

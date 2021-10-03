@@ -1,8 +1,6 @@
 {
     "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true,
+        "source.fixAll.eslint": true
     },
-    "cSpell.words": [
-        "middlewares"
-    ]
+    "cSpell.words": ["middlewares"]
 }

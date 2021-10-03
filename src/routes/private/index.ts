@@ -1,3 +1,5 @@
+/** @format */
+
 import Router from 'koa-router'
 import courseController from '../../controllers/course'
 import jwtMiddleware from '../../middlewares/jwt'

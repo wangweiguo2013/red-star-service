@@ -1,10 +1,12 @@
+/** @format */
+
 import UserModel from '../models/UserMysql'
 
 class UserService {
-    constructor(){
+    constructor() {
         UserModel.sync()
     }
-    async create(userInfo){
+    async create(userInfo) {
         const userRecord = await UserModel.create(userInfo)
         return userRecord
     }

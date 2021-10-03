@@ -1,5 +1,7 @@
-import { ModelAttributes, DataTypes } from 'sequelize'
-import { defineModel } from '../utils/db'
+/** @format */
+
+import {ModelAttributes, DataTypes} from 'sequelize'
+import {defineModel} from '../utils/db'
 
 const UserModel: ModelAttributes = {
     id: {
@@ -8,33 +10,33 @@ const UserModel: ModelAttributes = {
         primaryKey: true,
         unique: true,
         autoIncrement: true,
-        comment:"自增id"
+        comment: '自增id',
     },
     avatar: {
         type: DataTypes.STRING(255),
-        allowNull: true
+        allowNull: true,
     },
     nick_name: {
         type: DataTypes.STRING(50),
-        allowNull: true
+        allowNull: true,
     },
     email: {
         type: DataTypes.STRING(50),
-        allowNull: true
+        allowNull: true,
     },
     phone: {
         type: DataTypes.INTEGER,
-        allowNull:true
+        allowNull: true,
     },
     gender: {
         type: DataTypes.STRING(35),
-        allowNull:true
+        allowNull: true,
     },
     birth_day: {
-        type: DataTypes.DATE
+        type: DataTypes.DATE,
     },
     password: {
-        type: DataTypes.STRING(255)
-    }
+        type: DataTypes.STRING(255),
+    },
 }
 export default defineModel('user', UserModel)
