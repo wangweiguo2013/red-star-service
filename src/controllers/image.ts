@@ -3,6 +3,7 @@
 import ImageService from '../services/image'
 import * as fs from 'fs'
 import * as path from 'path'
+import { v4 as uuidv4 } from 'uuid';
 import config from '../config'
 
 const isOnline = process.env.NODE_ENV === 'production'
@@ -37,7 +38,7 @@ class ImageController {
         const {file} = ctx.request.files
         const {name, type, size} = file
         const suffix = getSuffix(name)
-        const fileName = Math.random().toString(16).slice(2) + '.' + suffix
+        const fileName = uuidv4() + '.' + suffix
         await saveFile(file, fileName)
         const fileData = {
             origin_name: name,
