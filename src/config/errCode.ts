@@ -14,3 +14,10 @@ export const PAGE_ERR_CODE: Record<string, ErrCode> = {
         msg: '未找到数据，恢复失败',
     },
 }
+
+export const IMAGE_ERR_CODE:Record<string, ErrCode> = {
+    EXCEED_MAX_SIZE: {
+        code: 800201,
+        msg: '图片尺寸不得超过2M',
+    },
+}

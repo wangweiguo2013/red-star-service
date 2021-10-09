@@ -5,6 +5,7 @@ import * as fs from 'fs'
 import * as path from 'path'
 import { v4 as uuidv4 } from 'uuid';
 import config from '../config'
+import { IMAGE_ERR_CODE } from '../config/errCode'
 
 const isOnline = process.env.NODE_ENV === 'production'
 
@@ -37,8 +38,14 @@ class ImageController {
     async upload(ctx) {
         const {file} = ctx.request.files
         const {name, type, size} = file
+        const MAX_FILE_SIZE = 1024 * 1024 * 2 //不超过2M
+        if(size > MAX_FILE_SIZE) {
+            return ctx.sendResponse({...IMAGE_ERR_CODE.EXCEED_MAX_SIZE})
+        }
         const suffix = getSuffix(name)
         const fileName = uuidv4() + '.' + suffix
+        try{
+            
         await saveFile(file, fileName)
         const fileData = {
             origin_name: name,
@@ -54,6 +61,10 @@ class ImageController {
                 image_url: config.image_path_url + fileName
             }
         })
+
+    }catch(err){
+
+    }
     }
 }
 
