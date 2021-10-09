@@ -6,15 +6,17 @@
     "scripts": {
         "start": "nodemon NODE_ENV=development",
         "dev": "pm2 start ecosystem.config.js --env dev",
-        "pro": "pm2 start ecosystem.config.js --env pro",
+        "pro": "tsc -p tsconfig.json && pm2 start ecosystem.config.js --env pro",
         "logs": "pm2 logs",
-        "stop": "pm2 stop ecosystem.config.js"
+        "stop": "pm2 stop ecosystem.config.js",
+        "build": "tsc -p tsconfig.json"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "dependencies": {
         "@koa/multer": "^3.0.0",
+        "global": "^4.4.0",
         "jsonwebtoken": "^8.5.1",
         "koa": "^2.13.1",
         "koa-body": "^4.2.0",
@@ -36,7 +38,7 @@
         "eslint-config-prettier": "^8.3.0",
         "eslint-plugin-prettier": "^4.0.0",
         "nodemon": "^2.0.12",
-        "pm2": "^5.1.1",
+        "pm2": "^5.1.2",
         "prettier": "^2.4.1",
         "ts-node": "^10.2.1",
         "typescript": "^4.4.2"
