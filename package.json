@@ -5,6 +5,7 @@
     "main": "index.js",
     "scripts": {
         "start": "nodemon NODE_ENV=development",
+        "dev": "pm2 start ecosystem.config.js --env dev",
         "pro": "pm2 start ecosystem.config.js --env pro",
         "logs": "pm2 logs",
         "stop": "pm2 stop ecosystem.config.js"
